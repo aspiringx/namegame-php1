@@ -1,0 +1,19 @@
+# ! makes properties required.
+# @ indicates a directive defined in scheme-directives.graphql.
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  articles: [Article!]! @hasMany
+}
+
+type Article {
+  id: ID!
+  title: String!
+  content: String!
+}
+
+type Query {
+  user(id: ID! @eq): User @find
+  users: [User!]! @paginate
+}
