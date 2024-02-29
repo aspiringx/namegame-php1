@@ -3,6 +3,8 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -16,16 +18,21 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'first_name', 'last_name',
+        'mobile_phone', 'email', 'password'
     ];
 
-    // ...
-
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * User can have many groups.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function articles()
+    public function groups(): BelongsToMany
     {
-        return $this->hasMany(Article::class);
+        return $this->belongsToMany(Group::class)
+        ->withPivot(
+            'role', 'title', 'member_since', 'is_leader', 'is_active'
+        )
+        ->withTimestamps();
     }
 }

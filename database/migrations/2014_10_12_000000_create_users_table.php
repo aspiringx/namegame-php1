@@ -14,7 +14,14 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique();
+            // Split name and form it from first and last.
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('mobile_phone')->index();
+            $table->timestamp('mobile_phone_verified_at')->nullable();
+            $table->string('mobile_phone_carrier')->index();
+            // MySQL and sqlite allow multiple nulls in uq col.
+            $table->string('email')->nullable()->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('api_token', 80)->unique()->nullable()->default(null);
