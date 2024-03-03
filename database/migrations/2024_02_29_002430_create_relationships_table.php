@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('relationships', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('label')->comment('Name of this relationship.');
-            $table->string('description')->nullable()->comment('Describe relationship if not obvious.');
+            $table->string('label');
+            $table->string('description')->nullable();
             $table->timestamps();
         });
     }

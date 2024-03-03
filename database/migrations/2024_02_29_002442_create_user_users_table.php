@@ -22,7 +22,8 @@ return new class extends Migration
             $table->timestamps();
 
             // Foreign keys and indexes.
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id1')->references('id')->on('users');
+            $table->foreign('user_id2')->references('id')->on('users');
             $table->foreign('group_id')->references('id')->on('groups');
             $table->unique(['group_id', 'user_id']);
         });
