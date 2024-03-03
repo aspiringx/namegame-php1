@@ -15,7 +15,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('parent_id')->nullable()->comment('ID of parent group.');
             $table->string('name')->nullable()->comment('Common or short group name.');
-            $table->string('name_full ')->comment('Formal or long group name.');
+            $table->string('name_full')->comment('Formal or long group name.');
             $table->string('slug')->unique()->comment('URL slug for group. Default to lower-case name no spaces.');
             $table->string('description')->nullable()->comment('Group description.');
             $table->string('logo_url')->nullable()->comment('Optional logo image URL.');

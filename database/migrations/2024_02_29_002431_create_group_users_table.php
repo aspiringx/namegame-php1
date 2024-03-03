@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('group_users', function (Blueprint $table) {
+        Schema::create('group_user', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('group_id');
             $table->unsignedBigInteger('user_id');
@@ -26,7 +26,8 @@ return new class extends Migration
 
             // Foreign keys and indexes.
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('group_id')->references('id')->on('groups');
+            $table->foreign('group_id')->references('id')->on('groups')
+                ->onDelete('cascade');
             $table->unique(['group_id', 'user_id']);
         });
     }
@@ -36,6 +37,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('group_users');
+        Schema::dropIfExists('group_user');
     }
 };
