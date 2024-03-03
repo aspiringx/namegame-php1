@@ -8,6 +8,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
+/**
+ * Group model.
+ *
+ * Good eloquent blog about recursive model relationships we're
+ * using here for groups with nested sub-groups:
+ * https://blog.ghanshyamdigital.com/building-a-self-referencing-model-in-laravel-a-step-by-step-guide
+ */
 class Group extends Model
 {
     use HasFactory;
