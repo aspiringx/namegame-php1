@@ -3,17 +3,24 @@
 type User {
   id: ID!
   name: String!
+  first_name: String!
+  last_name: String!
+  photo_url: String!
   email: String!
-  articles: [Article!]! @hasMany
+  mobile_phone: String
+
+  invitees: [User!]! @hasMany
 }
 
-type Article {
+type Group {
   id: ID!
-  title: String!
-  content: String!
+  name: String!
+  description: String!
 }
 
 type Query {
   user(id: ID! @eq): User @find
   users: [User!]! @paginate
+  group(id: ID! @eq): Group @find
+  groups: [Group!]! @paginate
 }

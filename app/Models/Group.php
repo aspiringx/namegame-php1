@@ -32,13 +32,13 @@ class Group extends Model
     /**
      * Groups can have many users.
      *
-     * All users are first members of the parent group.
-     * Get users of sub-groups directly from that group.
+     * All group users are members of a parent group first.
      *
-     * Pivot table (group_users) columns beyond foreign keys must
-     * be specified (withPivot) to be available.
-     *
-     * Updating timestamps on the pivot table requires withTimestamps.
+     * The relationship table (group_users, aka, pivot table) fields
+     * beyond the foreign keys must be specified using withPivot to be
+     * available in queries. Adding/updating timestamps on the pivot
+     * table requires withTimestamps, telling you when the
+     * relationships were created_at/updated_at.
      *
      * TODO: Watch for performance in large groups. May need to
      * paginate users for groups with 100s or 1,000s.
@@ -84,7 +84,8 @@ class Group extends Model
      *
      * A group can have multiple levels of sub-groups to
      * accommodate more personal groups within larger groups.
-     * This gets one level of children. See childrenRecursive.
+     * This method gets one level of children. See
+     * childrenRecursive for getting all levels.
      *
      * @return HasMany
      */
@@ -104,6 +105,4 @@ class Group extends Model
     {
         return $this->children()->with('childrenRecursive');
     }
-
-
 }
