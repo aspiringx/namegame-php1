@@ -15,8 +15,8 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('user_id')->comment('ID of the user that was the inviter.');
             $table->unsignedBigInteger('user_id_invitee')->comment('ID of the user that was invited.');
-            $table->unsignedBigInteger('group_id');
-            $table->string('relationship_id')->comment('Relationship between users. Friend, sibling, parent, etc.');
+            $table->unsignedBigInteger('group_id')->comment('ID of group in which users are connected.');
+            $table->string('relationship')->comment('Relationship between users. Friend, sibling, parent, etc.');
 
             // created_at, updated_at
             $table->timestamps();

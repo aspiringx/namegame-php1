@@ -51,7 +51,7 @@ class User extends Authenticatable
         return $this->belongsToMany(
             User::class, 'user_user', 'user_id', 'user_id_invitee'
         )
-        ->withPivot('group_id', 'relationship_id')
+        ->withPivot('group_id', 'relationship')
         ->withTimestamps();
     }
 
@@ -68,7 +68,7 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(
             User::class, 'user_user', 'user_id_invitee', 'user_id'
-        )->withPivot('group_id', 'relationship_id')
+        )->withPivot('group_id', 'relationship')
         ->withTimestamps();
     }
 
